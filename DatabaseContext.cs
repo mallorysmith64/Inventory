@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
-using BlogApi.Models;
+using InventoryAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -29,7 +29,6 @@ namespace inventory
       if (!optionsBuilder.IsConfigured)
       {
         var envConn = Environment.GetEnvironmentVariable("DATABASE_URL");
-#warning Be sure to update to your correct connection string to the point to the correct database
         var conn = "server=localhost;database=InventoryDB";
         if (envConn != null)
         {
