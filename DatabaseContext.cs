@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using BlogApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
