@@ -45,7 +45,7 @@ namespace Inventory.Controllers
     public ActionResult GetOneItem(int id)
     {
       //Do something
-      var item = context.Items.FirstOrDefault(item => item.Id == id);
+      var item = context.Items.FirstOrDefault(i => i.Id == id);
       //check return
       if (item == null)
       {
