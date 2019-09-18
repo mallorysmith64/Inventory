@@ -39,5 +39,22 @@ namespace Inventory.Controllers
       // 3. return list
       return items.ToList();
     }
+
+    //get one item and display error message if not found
+    [HttpGet("{id}")]
+    public ActionResult GetOneItem(int id)
+    {
+      //Do something
+      var item = context.Items.FirstOrDefault(i => i.Id == id);
+      //return it
+      if (item == null)
+      {
+        return NotFound();
+      }
+      else
+      {
+        return Ok(item);
+      }
+    }
   }
 }

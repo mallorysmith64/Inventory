@@ -40,6 +40,7 @@ namespace inventory
       {
         c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
       });
+      //added services
       services.AddDbContext<DatabaseContext>();
 
     }
