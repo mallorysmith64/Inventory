@@ -46,7 +46,7 @@ namespace Inventory.Controllers
     {
       //Do something
       var item = context.Items.FirstOrDefault(i => i.Id == id);
-      //return it
+      //check return
       if (item == null)
       {
         return NotFound();
@@ -55,6 +55,12 @@ namespace Inventory.Controllers
       {
         return Ok(item);
       }
+    }
+
+    [HttpPut("{description}")]
+    public ActionResult UpdateItem(string description)
+    {
+      var item = context.Items.FirstOrDefault(i => i.Description == description);
     }
   }
 }
