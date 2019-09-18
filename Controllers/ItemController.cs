@@ -45,7 +45,7 @@ namespace Inventory.Controllers
     public ActionResult GetOneItem(int id)
     {
       //Do something
-      var item = context.Items.FirstOrDefault(i => i.Id == id);
+      var item = context.Items.FirstOrDefault(item => item.Id == id);
       //check return
       if (item == null)
       {
@@ -57,10 +57,18 @@ namespace Inventory.Controllers
       }
     }
 
-    [HttpPut("{description}")]
-    public ActionResult UpdateItem(string description)
+    //put request: let client update everything about item
+    [HttpPut("{id}")]
+    public ActionResult<Item> UpdateItem([FromBody]Item entry, int id)
     {
-      var item = context.Items.FirstOrDefault(i => i.Description == description);
+      //find what you want to update
+      var items = context.Items.FirstOrDefault(i => i.Id == id);
+      //update it
+      context.Items.Update(items);
+      //save it
+      context.SaveChanges();
+      //return it
+      return items;
     }
   }
 }
