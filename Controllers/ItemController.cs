@@ -70,5 +70,19 @@ namespace Inventory.Controllers
       //return it
       return items;
     }
+
+    //delete request: allow client to delete an item
+    [HttpDelete("DeleteItem")]
+    public ActionResult<Item> DeleteItem([FromBody]Item entry, int id)
+    {
+      //find item to delete
+      var items = context.Items.FirstOrDefault(i => i.Id == id);
+      //delete it
+      context.Items.Remove(items);
+      //save it?
+      context.SaveChanges();
+      //return items
+      return items;
+    }
   }
 }
