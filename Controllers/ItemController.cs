@@ -4,6 +4,7 @@ using System.Linq;
 using inventory;
 using InventoryAPI.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Inventory.Controllers
 {
@@ -61,28 +62,43 @@ namespace Inventory.Controllers
     [HttpPut("UpdateItem")]
     public ActionResult<Item> UpdateItem([FromBody]Item entry, int id)
     {
-      //find what you want to update
-      var items = context.Items.FirstOrDefault(i => i.Id == id);
-      //update it
-      context.Items.Update(items);
-      //save it
+
+      {
+        //make sure ids match; entry and id
+        //otherwise you are not updating you are changing ids
+        if (id != entry.Id)
+        {
+          return BadRequest();
+        }
+      }
+      //modify
+      context.Entry(entry).State = EntityState.Modified;
+      //save update
       context.SaveChanges();
-      //return it
-      return items;
+      //return update
+      return entry;
     }
 
     //delete request: allow client to delete an item
-    [HttpDelete("DeleteItem")]
-    public ActionResult<Item> DeleteItem([FromBody]Item entry, int id)
+    [HttpDelete("{id}")]
+    public ActionResult DeleteItem(int id)
     {
       //find item to delete
-      var items = context.Items.FirstOrDefault(i => i.Id == id);
-      //delete it
-      context.Items.Remove(items);
-      //save it?
-      context.SaveChanges();
-      //return items
-      return items;
+      var item = context.Items.FirstOrDefault(i => i.Id == id);
+      //return something if it's not there
+      if (item == null)
+      {
+        return NotFound();
+      }
+      else
+      {
+        //otherwise delete item
+        context.Items.Remove(item);
+        //save item
+        context.SaveChanges();
+        //return a message, cannot return something that was deleted
+        return Ok(new { Message = "Item was deleted", item = item });
+      }
     }
   }
 }
