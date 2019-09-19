@@ -41,7 +41,7 @@ namespace Inventory.Controllers
     }
 
     //get one item and display error message if not found
-    [HttpGet("{id}")]
+    [HttpGet("OneItem")]
     public ActionResult GetOneItem(int id)
     {
       //Do something
@@ -58,7 +58,7 @@ namespace Inventory.Controllers
     }
 
     //put request: let client update everything about item
-    [HttpPut("{id}")]
+    [HttpPut("UpdateItem")]
     public ActionResult<Item> UpdateItem([FromBody]Item entry, int id)
     {
       //find what you want to update
