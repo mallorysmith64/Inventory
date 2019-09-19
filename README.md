@@ -1,23 +1,38 @@
-# Defualt Template for SDG .NET Course
+Don't lose track!
+Now that we have new API skills, we want to create an API to help our favorite store keep track of their inventory. This API will be able to let users add, update, delete, and search for items.
 
-This is the default template for a simple .NET Core Web API. This template has: 
+Objectives
+Create an API that can CRUD against a Database
+practice creating ASP.NET Web API endpoints
+practice EF Core.
+Requirements
+Create a simple API that has a handful of endpoints to manage data
+The API should be using Web API Controllers, Ef Core, and Postgres database
+Explorer Mode
+ Create a new sdg-api project using the dotnet CLI, have fun with the name and what items the shop sells.
 
-- CORS Enabled
-- Postgres & EF Core
-- Swagger
-- Ready for Docker Deployment
+ Create a Model of for an item in the shop. This will be your database table structure.
 
-to use:
+ The Item should have at least
 
-- [ ] Update your database name in `DatabaseContext.cs`
+ - Id
+ - SKU
+ - Name
+ - Short description
+ - NumberInStock
+ - Price
+ - DateOrdered
+ 
+ Create a GET endpoint for all items in your inventory
 
-to Deploy to heroku:
-- [ ] create a web app on heroku, make sure to have the CLI downloaded, installed, logged in and be logged into the container via heroku. 
-- [ ] Update your `dockerfile` to use your `*.dll` file instead of `dotnet-sdg-template.dll` 
-- [ ] Update the deploy script:
-    - [ ] change `sdg-template-image` to `your-project-name-image`
-    - [ ] change `heroku-web-app` to your web app name on heroku
+ Create a GET endpoint for each item
 
-## PROTIP: 
+ Create a POST endpoint that allows a client to add an item to the inventory
 
-When you are complete with the project and have turned it in to your instructor, update this read me with details about the assignment. 
+ Create a PUT endpoint that allows a client to update an item
+
+ Create a DELETE endpoint that allows a client to delete an item
+
+ Create a GET endpoint to get all items that are out of stock
+
+ Create a GET endpoint that allows the to search for an item based on SKU
